@@ -1,3 +1,5 @@
+name: Generate and Deploy Doxygen Documentation
+
 on:
   push:
     branches:
