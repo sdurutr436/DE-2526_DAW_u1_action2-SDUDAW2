@@ -1,4 +1,4 @@
-name: 📚 Auto-Generate & Commit Doxygen Docs
+name: 📚 Auto-Commit Doxygen Docs
 
 on:
   push:
@@ -11,39 +11,25 @@ permissions:
 
 jobs:
   build-docs:
-    name: 🛠️ Build & Deploy Doxygen Docs
     runs-on: ubuntu-latest
 
     steps:
-      - name: ⬇️ Checkout Repository
+      - name: ⬇️ Checkout code
         uses: actions/checkout@v4
 
-      - name: 🧰 Install Doxygen & Graphviz
+      - name: 🛠️ Install Doxygen and Graphviz
         run: |
-          echo "Installing Doxygen and Graphviz..."
           sudo apt-get update
           sudo apt-get install -y doxygen graphviz
 
-      - name: 📝 Generate Doxygen Documentation
+      - name: 📝 Generate Doxygen docs
+        run: doxygen doc/Doxyfile
+
+      - name: ✅ Commit and push docs (manual)
         run: |
-          echo "Generating documentation..."
-          doxygen doc/Doxyfile
-
-      - name: ✅ Commit & Push Docs to Main
-        uses: EndBug/add-and-commit@v9
-        with:
-          add: 'doc/html'
-          message: |
-            📚 Automated Doxygen documentation update
-
-            - Generated on: ${{ github.workflow }} #${{ github.run_number }}
-            - Commit: ${{ github.sha }}
-            - By: GitHub Actions 🤖
-          default_author: github_actions
-          push: true
-
-      - name: 🎉 Success!
-        if: success()
-        run: |
-          echo "✅ Documentation build and commit completed!"
-          echo "Check doc/html in your main branch for the latest docs."
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git pull --rebase origin main
+          git add doc/html
+          git commit -m "Update Doxygen documentation" || echo "No changes to commit"
+          git push origin main
