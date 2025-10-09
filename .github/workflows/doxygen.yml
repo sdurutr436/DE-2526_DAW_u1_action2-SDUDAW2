@@ -1,25 +1,49 @@
-name: Generate and Deploy Doxygen Documentation
+name: 📚 Auto-Generate & Commit Doxygen Docs
 
 on:
   push:
     branches:
       - main
       - master
+
 permissions:
   contents: write
 
 jobs:
-  deploy:
+  build-docs:
+    name: 🛠️ Build & Deploy Doxygen Docs
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
+      - name: ⬇️ Checkout Repository
         uses: actions/checkout@v4
-      - name: Generate and Deploy Doxygen Docs
-        uses: AgarwalSaurav/ghaction-doxygen-ghpages@release/v2
+
+      - name: 🧰 Install Doxygen & Graphviz
+        run: |
+          echo "Installing Doxygen and Graphviz..."
+          sudo apt-get update
+          sudo apt-get install -y doxygen graphviz
+
+      - name: 📝 Generate Doxygen Documentation
+        run: |
+          echo "Generating documentation..."
+          doxygen doc/Doxyfile
+
+      - name: ✅ Commit & Push Docs to Main
+        uses: EndBug/add-and-commit@v9
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          working-directory: .
-          doxyfile-path: doc/Doxyfile
-          html-output-folder: doc/html
-          branch: gh-pages
-          # env_list_file: path/to/env.list  # Uncomment and set if needed (see below)
+          add: 'doc/html'
+          message: |
+            📚 Automated Doxygen documentation update
+
+            - Generated on: ${{ github.workflow }} #${{ github.run_number }}
+            - Commit: ${{ github.sha }}
+            - By: GitHub Actions 🤖
+          default_author: github_actions
+          push: true
+
+      - name: 🎉 Success!
+        if: success()
+        run: |
+          echo "✅ Documentation build and commit completed!"
+          echo "Check doc/html in your main branch for the latest docs."
