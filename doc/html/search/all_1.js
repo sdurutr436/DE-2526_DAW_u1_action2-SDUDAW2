@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['con_20github_20actions_0',['Mi Proyecto con GitHub Actions',['../md_README.html',1,'']]]
+  ['b_20documentación_20de_20componentes_0',['b) Documentación de componentes',['../md_README.html#autotoc_md2',1,'']]]
 ];

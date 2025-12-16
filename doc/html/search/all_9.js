@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['saludo_0',['saludo',['../namespacemain.html#a1c9843a3ae1582798090849e88f09396',1,'main']]],
-  ['status_1',['status',['../namespaceupdate__readme.html#acc559aa006457f50cc12171468794a83',1,'update_readme']]]
+  ['main_0',['main',['../namespacemain.html',1,'']]],
+  ['main_2epy_1',['main.py',['../main_8py.html',1,'']]],
+  ['multiformato_2',['c) Multiformato',['../md_README.html#autotoc_md3',1,'']]]
 ];

@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['main_0',['main',['../namespacemain.html',1,'']]],
-  ['main_2epy_1',['main.py',['../main_8py.html',1,'']]],
-  ['mi_20proyecto_20con_20github_20actions_2',['Mi Proyecto con GitHub Actions',['../md_README.html',1,'']]]
+  ['g_20instalación_20y_20uso_20documentados_0',['g) Instalación y uso documentados',['../md_README.html#autotoc_md7',1,'']]],
+  ['generación_20de_20documentación_1',['a) Herramienta de generación de documentación',['../md_README.html#autotoc_md1',1,'']]],
+  ['github_20actions_2',['Documentación Automática con GitHub Actions',['../md_README.html',1,'']]]
 ];

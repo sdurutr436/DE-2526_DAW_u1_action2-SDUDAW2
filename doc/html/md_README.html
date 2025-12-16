@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Prueba de documentación automática con GitHub Actions: Mi Proyecto con GitHub Actions</title>
+<title>Prueba de documentación automática con GitHub Actions: Documentación Automática con GitHub Actions</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -89,18 +89,62 @@ $(document).ready(function(){initNavTree('md_README.html',''); initResizable(); 
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">Mi Proyecto con GitHub Actions</div></div>
+  <div class="headertitle"><div class="title">Documentación Automática con GitHub Actions</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md0"></a> Este proyecto sirve para aprender a usar GitHub Actions 🚀</p>
+<div class="textblock"><p><a class="anchor" id="autotoc_md0"></a> </p>
 <h1><a class="anchor" id="autotoc_md1"></a>
-Estado de los tests</h1>
-<p>✅ Tests correctos -&gt; 2025-10-09 08:00:50</p>
-<p>✅ Tests correctos -&gt; 2025-10-09 07:46:08</p>
-<p>✅ Tests correctos -&gt; 2025-10-09 07:41:17</p>
-<p>✅ Tests correctos -&gt; 2025-10-09 07:35:28</p>
-<p>✅ Tests correctos -&gt; 2025-10-09 07:11:06</p>
-<p>✅ Tests correctos -&gt; 2025-10-09 06:33:17 </p>
+a) Herramienta de generación de documentación</h1>
+<p>Utilicé Doxygen integrado en el workflow de GitHub Actions ubicado en <code>.github/workflows/doxygen.yml</code>. El workflow se ejecuta automáticamente en cada push a main y genera la documentación HTML en el directorio <code>doc/html</code>.</p>
+<h1><a class="anchor" id="autotoc_md2"></a>
+b) Documentación de componentes</h1>
+<p>El código actual no tiene documentación estructurada. Doxygen procesa el código Python sin docstrings y genera documentación básica a partir de las firmas de función. El archivo <code><a class="el" href="main_8py.html">main.py</a></code> contiene:</p>
+<div class="fragment"><div class="line"><span class="keyword">def </span>saludo(nombre: str):</div>
+<div class="line">    <span class="keywordflow">return</span> f<span class="stringliteral">&quot;Hola, {nombre}!&quot;</span></div>
+</div><!-- fragment --><p>Esta función ha sido procesada por Doxygen y aparece en <code>doc/html/main_8py.html</code>, aunque sin comentarios estructurados. No he utilizado un estilo de documentación específico porque el código carece de docstrings.</p>
+<h1><a class="anchor" id="autotoc_md3"></a>
+c) Multiformato</h1>
+<p>He configurado Doxygen para generar documentación en formato LaTeX además de HTML. La configuración en <code>doc/Doxyfile</code> especifica <code>GENERATE_LATEX = YES</code>. Sin embargo, el workflow actual en <code>.github/workflows/doxygen.yml</code> solo hace commit del directorio <code>doc/html</code>, por lo que la documentación LaTeX se genera pero no se persiste en el repositorio. El comando <code>doxygen doc/Doxyfile</code> genera ambos formatos localmente.</p>
+<h1><a class="anchor" id="autotoc_md4"></a>
+d) Colaboración</h1>
+<p>GitHub facilita el mantenimiento de la documentación mediante varios mecanismos. Cuando varias personas colaboran, se utilizan Pull Requests que permiten revisar cambios antes de integrarlos. Las GitHub Actions ejecutan checks de CI que validan la generación correcta de documentación. La protección de ramas en main impide pushes directos, obligando a pasar por el proceso de revisión. Los reviews permiten que otros desarrolladores aprueben o soliciten cambios en la documentación antes de su publicación.</p>
+<h1><a class="anchor" id="autotoc_md5"></a>
+e) Control de versiones</h1>
+<p>Mensajes de commit del proyecto:</p>
+<div class="fragment"><div class="line"> automáticos que regeneran la documentación en cada push. Cuando colaboran varias personas, se pueden usar Pull Requests para revisar cambios antes de integrarlos. Las GitHub Actions ejecutan checks de CI que validan la generación correcta de documentación. La protección de ramas en main puede configurarse para impedir pushes directos y requerir revisiones mediante PR. Los code reviews permiten que otros desarrolladores aprueben o soliciten cambios en código y</div>
+<div class="line">d2fcc59 Update Doxygen documentation</div>
+<div class="line">0bf1897 Update README con estado de tests</div>
+<div class="line">d44b259 Añadido cambio a yaml para que pueda añadir los cambios a main en lugar de github publish</div>
+<div class="line">78a1cad Update README con estado de tests</div>
+<div class="line">ecb5724 Cambiado doxygen para representar mejor los cambios</div>
+</div><!-- fragment --><p>Son claros y descriptivos porque especifican exactamente qué se modificó. "Update Doxygen documentation" indica actualización de documentación, "Añadido cambio a yaml" especifica el archivo modificado y su propósito, y "Cambiado doxygen para representar mejor los cambios" explica la mejora realizada.</p>
+<h1><a class="anchor" id="autotoc_md6"></a>
+f) Accesibilidad y seguridad</h1>
+<p>Las medidas de seguridad disponibles en GitHub incluyen:</p>
+<ol type="1">
+<li>Control de visibilidad del repositorio mediante configuración privada o pública</li>
+<li>Gestión de permisos mediante roles de GitHub que controlan quién puede escribir, leer o administrar</li>
+<li>Protección de ramas que puede configurarse para requerir revisiones antes de merge</li>
+<li>Uso del token automático <code>secrets.GITHUB_TOKEN</code> en workflows para operaciones de git sin exponer credenciales</li>
+<li>Configuración de permisos específicos en workflows con <code>permissions: contents: write</code> que limita las capacidades del workflow solo a escritura de contenido</li>
+</ol>
+<h1><a class="anchor" id="autotoc_md7"></a>
+g) Instalación y uso documentados</h1>
+<p>El funcionamiento del workflow de documentación se encuentra en <code>.github/workflows/doxygen.yml</code>. Este workflow ejecuta los siguientes comandos:</p>
+<ul>
+<li><code>sudo apt-get install -y doxygen graphviz</code> para instalar las herramientas necesarias</li>
+<li><code>doxygen doc/Doxyfile</code> para generar la documentación</li>
+</ul>
+<p>La configuración de Doxygen está en <code>doc/Doxyfile</code>, que especifica generar documentación en formato HTML (persistida en el repositorio bajo <code>doc/html</code>) y LaTeX (generada pero no commitada). La herramienta procesa archivos Python y genera documentación navegable.</p>
+<h1><a class="anchor" id="autotoc_md8"></a>
+h) Integración continua</h1>
+<p>procesos de verificación y generación de artefactos en cada cambio del código fuente. El workflow de documentación se dispara automáticamente con el evento <code>push</code> a las ramas main y master:</p>
+<div class="fragment"><div class="line">on:</div>
+<div class="line">  push:</div>
+<div class="line">    branches:</div>
+<div class="line">      - main</div>
+<div class="line">      - master</div>
+</div><!-- fragment --><p>El workflow ejecuta cuatro pasos: checkout del código, instalación de Doxygen y Graphviz, generación de documentación mediante <code>doxygen doc/Doxyfile</code>, y commit automático de los archivos HTML generados. Adicionalmente, existe un segundo workflow en <code>.github/workflows/ci.yaml</code> que ejecuta tests con pytest y actualiza el README, también disparado por push a main y opcionalmente mediante <code>workflow_dispatch</code> El workflow ejecuta cuatro pasos: checkout del código, instalación de Doxygen y Graphviz, generación de documentación y commit automático de los cambios. Esto garantiza que la documentación esté siempre actualizada con el código fuente. </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->

@@ -25,8 +25,15 @@
 var NAVTREE =
 [
   [ "Prueba de documentación automática con GitHub Actions", "index.html", [
-    [ "Mi Proyecto con GitHub Actions", "md_README.html", [
-      [ "Estado de los tests", "md_README.html#autotoc_md1", null ]
+    [ "Documentación Automática con GitHub Actions", "md_README.html", [
+      [ "a) Herramienta de generación de documentación", "md_README.html#autotoc_md1", null ],
+      [ "b) Documentación de componentes", "md_README.html#autotoc_md2", null ],
+      [ "c) Multiformato", "md_README.html#autotoc_md3", null ],
+      [ "d) Colaboración", "md_README.html#autotoc_md4", null ],
+      [ "e) Control de versiones", "md_README.html#autotoc_md5", null ],
+      [ "f) Accesibilidad y seguridad", "md_README.html#autotoc_md6", null ],
+      [ "g) Instalación y uso documentados", "md_README.html#autotoc_md7", null ],
+      [ "h) Integración continua", "md_README.html#autotoc_md8", null ]
     ] ],
     [ "Espacios de nombres", "namespaces.html", [
       [ "Lista de espacios de nombres", "namespaces.html", "namespaces_dup" ],
