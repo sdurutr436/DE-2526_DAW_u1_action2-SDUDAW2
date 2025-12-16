@@ -1,5 +1,7 @@
 # Documentación Automática con GitHub Actions
 
+📖 **[Ver documentación en GitHub Pages](https://sdurutr436.github.io/DE-2526_DAW_u1_action2-SDUDAW2/doc/html/)**
+
 ## a) Herramienta de generación de documentación
 
 Utilicé Doxygen integrado en el workflow de GitHub Actions ubicado en `.github/workflows/doxygen.yml`. El workflow se ejecuta automáticamente en cada push a main y genera la documentación HTML en el directorio `doc/html`.
