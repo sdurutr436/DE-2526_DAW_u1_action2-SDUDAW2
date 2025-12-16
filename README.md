@@ -1,6 +1,6 @@
 # Documentación Automática con GitHub Actions
 
-📖 **[Ver documentación en GitHub Pages](https://sdurutr436.github.io/DE-2526_DAW_u1_action2-SDUDAW2/doc/html/)**
+📖 **[Ver documentación en GitHub Pages](https://sdurutr436.github.io/DE-2526_DAW_u1_action2-SDUDAW2/)**
 
 ## a) Herramienta de generación de documentación
 
